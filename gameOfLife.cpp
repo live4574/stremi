@@ -2,7 +2,9 @@
 #define endl "\n"
 using namespace std;
 
-int board[80][60];
+#define maxHeight 40
+#define maxWidth 80
+int board[maxHeight][maxWidth]; //wdth 80 height 40
 
 void makeState(int stateCount) {
 
