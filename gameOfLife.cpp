@@ -6,17 +6,17 @@ using namespace std;
 #define maxWidth 80
 int board[maxHeight][maxWidth]; //wdth 80 height 40
 
-void makeState(int stateCount) {
+void makeState(int generationCount) {
 
 }
 
 int main(char **argv) {
 	ios::sync_with_stdio(false);
 	cin.tie(NULL);
-	cout.tie(NULL);
+	cout.tie(NULL);//fast io
 
-	int arg1 = atoi(argv[1]);
-	int arg2 = atoi(argv[2]);
+	char* arg1 = argv[1]; //txt
+	int arg2 = atoi(argv[2]); //generation count
 
 
 }
