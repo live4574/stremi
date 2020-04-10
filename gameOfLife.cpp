@@ -5,18 +5,48 @@ using namespace std;
 #define maxHeight 40
 #define maxWidth 80
 int board[maxHeight][maxWidth]; //wdth 80 height 40
-int board[maxHeight][maxWidth];
+int board2[maxHeight][maxWidth];
 int Height, Width;
 
 void makeState(int generationCount) {
-		
+	int neigh;
+	cout << endl;
+	for (int i = 0; i < maxHeight; i++) {
+		for (int j = 0; j < maxWidth; j++) {
+			neigh = 0;
+			if (board[i][j - 1] == 1)neigh++;
+			if (board[i - 1][j] == 1)neigh++;
+			if (board[i - 1][j - 1] == 1)neigh++;
+			if (board[i + 1][j] == 1)neigh++;
+			if (board[i][j + 1] == 1)neigh++;
+			if (board[i + 1][j + 1] == 1)neigh++;
+			if (board[i - 1][j + 1] == 1)neigh++;
+			if (board[i + 1][j - 1] == 1)neigh++;
+
+			if (board[i][j] == 1) {
+				if (neigh < 2)board2[i][j] = 0;
+				if (neigh >=4)board2[i][j] = 0;
+			}
+			else if (board[i][j] == 0) {
+				if (neigh == 3)board2[i][j] = 2;
+			}
+		}
+	}
 }
+
+void swap(int &board[][] int board2[][]) {
+
+}//board board2 swap
+
+void randInput() {
+
+}//if randomize input if there is no board input set
 
 void print(int board[][]) {
 	cout << endl;
 	for (int i = 0; i <Height ;i++) {
 		for (int j = 0; j < Width; j++) {
-			cout << board[i][j]endl;
+			cout << board[i][j]<<endl;
 		}
 	}
 	cout << endl;
