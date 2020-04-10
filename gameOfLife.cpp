@@ -32,14 +32,26 @@ void makeState(int generationCount) {
 			}
 		}
 	}
+	swap(board, board2);
 }
 
-void swap(int &board[][] int board2[][]) {
-
+void swap(int &board[][] int& board2[][]) {
+	for (int i = 0; i < Height; i++) {
+		for (int j = 0; j < Width; j++) {
+			int temp = board[i][j];
+			board[i][j] = board2[i][j];
+			board2[i][j] = temp;
+		}
+	}
 }//board board2 swap
 
 void randInput() {
-
+	srand((unsigned int)time(NULL));
+	for (int i = 0; i < Height; i++) {
+		for (int j = 0; j < Width; j++) {
+			board[i][j] = rand() % 10;
+		}
+	}
 }//if randomize input if there is no board input set
 
 void print(int board[][]) {
