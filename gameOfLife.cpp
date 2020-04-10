@@ -54,6 +54,7 @@ void randInput() {
 	}
 }//if randomize input if there is no board input set
 
+
 void print(int board[][]) {
 	cout << endl;
 	for (int i = 0; i <Height ;i++) {
