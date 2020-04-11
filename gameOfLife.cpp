@@ -8,15 +8,15 @@ int board[maxHeight][maxWidth]; //wdth 80 height 40
 int board2[maxHeight][maxWidth];
 int Height, Width;
 
-void resetBoard(int &target[][]) {
+void resetBoard() {
 	for (int i = 0; i < Height; i++) {
 		for (int j = 0; j < Width; j++) {
-			target[i][j] = 0;
+			board2[i][j] = 0;
 		}
 	}
 }
 
-void swap(int &board[][] int& board2[][]) {
+void swap(int board[][], int board2[][]) {
 	for (int i = 0; i < Height; i++) {
 		for (int j = 0; j < Width; j++) {
 			int temp = board[i][j];
@@ -51,7 +51,7 @@ void makeState(int generationCount) {
 		}
 	}
 	swap(board, board2);
-	resetBoard(board2);
+	resetBoard();
 }
 
 
