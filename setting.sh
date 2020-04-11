@@ -12,6 +12,4 @@ sudo g++ -c life.cpp
 
 g++ -o life life.o
 
-./life
-
 echo done
