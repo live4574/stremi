@@ -8,6 +8,24 @@ int board[maxHeight][maxWidth]; //wdth 80 height 40
 int board2[maxHeight][maxWidth];
 int Height, Width;
 
+void resetBoard(int &target[][]) {
+	for (int i = 0; i < Height; i++) {
+		for (int j = 0; j < Width; j++) {
+			target[i][j] = 0;
+		}
+	}
+}
+
+void swap(int &board[][] int& board2[][]) {
+	for (int i = 0; i < Height; i++) {
+		for (int j = 0; j < Width; j++) {
+			int temp = board[i][j];
+			board[i][j] = board2[i][j];
+			board2[i][j] = temp;
+		}
+	}
+}//board board2 swap
+
 void makeState(int generationCount) {
 	int neigh;
 	cout << endl;
@@ -33,26 +51,10 @@ void makeState(int generationCount) {
 		}
 	}
 	swap(board, board2);
-	reset(board2);
+	resetBoard(board2);
 }
 
-void swap(int &board[][] int& board2[][]) {
-	for (int i = 0; i < Height; i++) {
-		for (int j = 0; j < Width; j++) {
-			int temp = board[i][j];
-			board[i][j] = board2[i][j];
-			board2[i][j] = temp;
-		}
-	}
-}//board board2 swap
 
-void resetBoard(int &target[][]) {
-	for (int i = 0; i < Height; i++) {
-		for (int j = 0; j < Width; j++) {
-			target[i][j] = 0;
-		}
-	}
-}
 void randInput() {
 	srand((unsigned int)time(NULL));
 	for (int i = 0; i < Height; i++) {
@@ -87,3 +89,4 @@ int main(char **argv) {
 	//arg1 입력이 없다면 랜덤 인풋
 	//arg2 입력이 없다면 
 }
+
