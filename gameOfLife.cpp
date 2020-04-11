@@ -1,4 +1,5 @@
 #include<iostream>
+#include<stdlib.h>
 #define endl "\n"
 using namespace std;
 
@@ -16,7 +17,7 @@ void resetBoard() {
 	}
 }
 
-void swap(int board[][], int board2[][]) {
+void swap(int board[][maxWidth], int board2[][maxWidth]) {
 	for (int i = 0; i < Height; i++) {
 		for (int j = 0; j < Width; j++) {
 			int temp = board[i][j];
@@ -65,7 +66,7 @@ void randInput() {
 }//if randomize input if there is no board input set
 
 
-void print(int board[][]) {
+void print(int board[][maxWidth]) {
 	cout << endl;
 	for (int i = 0; i <Height ;i++) {
 		for (int j = 0; j < Width; j++) {
@@ -80,11 +81,11 @@ int main(char **argv) {
 	cin.tie(NULL);
 	cout.tie(NULL);//fast io
 
-	char* arg1 = argv[1]; //txt
-	int arg2 = atoi(argv[2]); //generation count
+	//char* arg1 = argv[1]; //txt
+	//int arg2 = atoi(argv[2]); //generation count
 
-	cout << arg1<<endl; //test arg1
-	cout << arg2<<endl; //test arg2
+	//cout << arg1<<endl; //test arg1
+	//cout << arg2<<endl; //test arg2
 
 	//arg1 입력이 없다면 랜덤 인풋
 	//arg2 입력이 없다면 
