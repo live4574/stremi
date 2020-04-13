@@ -161,8 +161,13 @@ void print() {
 
 }
 
-void getInputTxt() {
-
+void getInputTxt(char* src) {
+	string in_line;
+	ifstream in(src);
+	while (getline(in, in_line)) {
+		cout << in_line << endl;
+	}
+	in.close();
 }
 
 void dumpTxt() {
