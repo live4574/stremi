@@ -1,14 +1,16 @@
 #include<iostream>
 #include<stdlib.h>
+#include<fstream>
+#include<string>
 #define endl "\n"
 
 using namespace std;
 
 
 
-#define maxHeight 40
+#define maxHeight 150
 
-#define maxWidth 80
+#define maxWidth 150
 
 int board[maxHeight][maxWidth]; //wdth 80 height 40
 
@@ -164,7 +166,14 @@ void getInputTxt() {
 }
 
 void dumpTxt() {
-
+	string out_line;
+	ofstream out("dump.txt");
+	for (int i = 0; i < maxHeight; i++) {
+		for (int j = 0; j < maxWidth; j++) {
+			out << board[i][j];
+		}out << endl;
+	}
+	out.close();
 }
 
 int main(int argc, char* argv[]) {
