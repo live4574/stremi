@@ -150,7 +150,13 @@ void print(int board[][maxWidth]) {
 
 }
 
+void getInputTxt() {
 
+}
+
+void dumpTxt() {
+
+}
 
 int main(int argc, char* argv[]) {
 
@@ -176,13 +182,21 @@ int main(int argc, char* argv[]) {
 
 	//arg1 입력이 없다면 랜덤 인풋
 	if (argc == 1) {
-
+		randInput();
+		makeState();
+		print();
 	}
 	else if (argc == 2) {
-
+		// 입력된 파일 읽어오기.
+		getInputTxt();
+		makeState();
+		print();
 	}
 	else if (argc == 3) {
-
+		// 입력된 파일 읽어오고 해당 generationCount만큼 실행한후 txt파일로 dump(dump.txt)
+		getInputTxt();
+		makeState();
+		dumpTxt();
 	}
 	//arg2 입력이 없다면 
 	
