@@ -1,5 +1,5 @@
 #include<iostream>
-
+#include<stdlib.h>
 #define endl "\n"
 
 using namespace std;
@@ -18,13 +18,13 @@ int Height, Width;
 
 
 
-void resetBoard(int &target[][]) {
+void resetBoard() {
 
 	for (int i = 0; i < Height; i++) {
 
 		for (int j = 0; j < Width; j++) {
 
-			target[i][j] = 0;
+			board2[i][j] = 0;
 
 		}
 
@@ -34,7 +34,7 @@ void resetBoard(int &target[][]) {
 
 
 
-void swap(int &board[][] int& board2[][]) {
+void swap(int board[][maxWidth], int board2[][maxWidth]) {
 
 	for (int i = 0; i < Height; i++) {
 
@@ -104,7 +104,7 @@ void makeState(int generationCount) {
 
 	swap(board, board2);
 
-	resetBoard(board2);
+	resetBoard();
 
 }
 
@@ -132,7 +132,7 @@ void randInput() {
 
 
 
-void print(int board[][]) {
+void print(int board[][maxWidth]) {
 
 	cout << endl;
 
@@ -152,7 +152,7 @@ void print(int board[][]) {
 
 
 
-int main(char **argv) {
+int main(int argc, char* argv[]) {
 
 	ios::sync_with_stdio(false);
 
@@ -160,22 +160,25 @@ int main(char **argv) {
 
 	cout.tie(NULL);//fast io
 
+				   //cout<<argc<<endl;
 
+	if (argc != 1 && argc != 2 && argc != 3) {
+		cout << "argc error. usage: ./life || ./life plus.txt ||./life plus.txt generationCount" << endl;
+	}
+	if (argc >= 2) {
+		char* arg1 = argv[1]; //txt
+		cout << arg1 << endl;
+	}
+	if (argc >= 3) {
+		int arg2 = atoi(argv[2]); //generation count
+		cout << arg2 << endl;
+	}
 
-	char* arg1 = argv[1]; //txt
+	//arg1 입력이 없다면 랜덤 인풋
 
-	int arg2 = atoi(argv[2]); //generation count
+	//arg2 입력이 없다면 
 
-
-
-	cout << arg1 << endl; //test arg1
-
-	cout << arg2 << endl; //test arg2
-
-
-
-						  //arg1 입력이 없다면 랜덤 인풋
-
-						  //arg2 입력이 없다면 
 
 }
+
+
