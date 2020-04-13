@@ -12,7 +12,7 @@ using namespace std;
 
 #define maxWidth 150
 
-int board[maxHeight][maxWidth]; //wdth 80 height 40
+int board[maxHeight][maxWidth]; //maxwidth, height
 
 int board2[maxHeight][maxWidth];
 
@@ -118,6 +118,7 @@ void randInput() {
 
 	srand((unsigned int)time(NULL));
 
+
 	for (int i = 0; i < maxHeight; i++) {
 
 		for (int j = 0; j < maxWidth; j++) {
@@ -128,11 +129,12 @@ void randInput() {
 
 	}
 	//test
-	for (int i = 0; i<maxHeight; i++) {
-		for (int j = 0; j<maxWidth; j++) {
-			cout << board[i][j];
-		}
+	/*for (int i = 0; i<maxHeight; i++) {
+	for (int j = 0; j<maxWidth; j++) {
+	cout << board[i][j];
 	}
+	}*/
+
 	cout << endl;
 
 
@@ -165,10 +167,25 @@ void getInputTxt(char* src) {
 	ifstream in(src);
 	int targetHeigth = 0;
 	int count = 0;
-	while (getline(in, in_line)) {
+	while (getline(in, in_line, ' ')) {
+
 		if (count == 0) {
-			Height = in_line[0];
-			Width = in_line[1];
+			//cout<<in_line;
+			string s1;
+			for (int i = 0; i<in_line.size(); i++) {
+				if (in_line[i] != ' ')s1 += in_line[i];
+			}
+			//cout<<s1<<endl;
+			Height = atoi(s1.c_str());
+
+		}
+		else if (count == 1) {
+			string s2;
+			for (int i = 0; i<in_line.size(); i++) {
+				if (in_line[i] != ' ')s2 += in_line[i];
+			}
+			//cout<<s2<<endl;
+			Width = atoi(s2.c_str());
 		}
 		else {
 			for (int j = 0; j < Width; j++) {
@@ -179,16 +196,16 @@ void getInputTxt(char* src) {
 		count++;
 	}
 	in.close();
-	cout << "height" << Height << endl;
-	cout << "width" << Width << endl;
+	//	cout << "height" << Height << endl;
+	//	cout << "width" << Width << endl;
 
 }
 
 void dumpTxt() {
 	string out_line;
 	ofstream out("dump.txt");
-	for (int i = 0; i < maxHeight; i++) {
-		for (int j = 0; j < maxWidth; j++) {
+	for (int i = 0; i < Height; i++) {
+		for (int j = 0; j < Width; j++) {
 			out << board[i][j];
 		}out << endl;
 	}
