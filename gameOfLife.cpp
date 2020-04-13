@@ -57,10 +57,9 @@ void swap(int board[][maxWidth], int board2[][maxWidth]) {
 
 
 void makeState(int generationCount) {
+	cout << endl;
 	while (generationCount) {
 		int neigh;
-
-		cout << endl;
 
 		for (int i = 0; i < maxHeight; i++) {
 
@@ -151,9 +150,9 @@ void print() {
 
 		for (int j = 0; j < Width; j++) {
 
-			cout << board[i][j] << endl;
+			cout << board[i][j];
 
-		}
+		}cout << endl;
 
 	}
 
@@ -164,10 +163,25 @@ void print() {
 void getInputTxt(char* src) {
 	string in_line;
 	ifstream in(src);
+	int targetHeigth = 0;
+	int count = 0;
 	while (getline(in, in_line)) {
-		cout << in_line << endl;
+		if (count == 0) {
+			Height = in_line[0];
+			Width = in_line[1];
+		}
+		else {
+			for (int j = 0; j < Width; j++) {
+				board[targetHeigth][j] = in_line[j];
+			}
+			targetHeigth++;
+		}
+		count++;
 	}
 	in.close();
+	cout << "height" << Height << endl;
+	cout << "width" << Width << endl;
+
 }
 
 void dumpTxt() {
@@ -189,7 +203,7 @@ int main(int argc, char* argv[]) {
 
 	cout.tie(NULL);//fast io
 
-	//cout<<argc<<endl;
+				   //cout<<argc<<endl;
 
 	char* arg1;
 	int arg2;
@@ -198,11 +212,11 @@ int main(int argc, char* argv[]) {
 	}
 	if (argc >= 2) {
 		arg1 = argv[1]; //txt
-		cout << arg1 << endl;
+						//cout << arg1 << endl;
 	}
 	if (argc >= 3) {
 		arg2 = atoi(argv[2]); //generation count
-		cout << arg2 << endl;
+							  //cout << arg2 << endl;
 	}
 
 	//arg1 입력이 없다면 랜덤 인풋
@@ -213,13 +227,13 @@ int main(int argc, char* argv[]) {
 	}
 	else if (argc == 2) {
 		// 입력된 파일 읽어오기.
-		getInputTxt();
+		getInputTxt(arg1);
 		makeState(1);
 		print();
 	}
 	else if (argc == 3) {
 		// 입력된 파일 읽어오고 해당 generationCount만큼 실행한후 txt파일로 dump(dump.txt)
-		getInputTxt();
+		getInputTxt(arg1);
 		makeState(arg2);
 		dumpTxt();
 	}
