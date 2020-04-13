@@ -55,57 +55,58 @@ void swap(int board[][maxWidth], int board2[][maxWidth]) {
 
 
 void makeState(int generationCount) {
+	while (generationCount) {
+		int neigh;
 
-	int neigh;
+		cout << endl;
 
-	cout << endl;
+		for (int i = 0; i < maxHeight; i++) {
 
-	for (int i = 0; i < maxHeight; i++) {
+			for (int j = 0; j < maxWidth; j++) {
 
-		for (int j = 0; j < maxWidth; j++) {
+				neigh = 0;
 
-			neigh = 0;
+				if (board[i][j - 1] == 1)neigh++;
 
-			if (board[i][j - 1] == 1)neigh++;
+				if (board[i - 1][j] == 1)neigh++;
 
-			if (board[i - 1][j] == 1)neigh++;
+				if (board[i - 1][j - 1] == 1)neigh++;
 
-			if (board[i - 1][j - 1] == 1)neigh++;
+				if (board[i + 1][j] == 1)neigh++;
 
-			if (board[i + 1][j] == 1)neigh++;
+				if (board[i][j + 1] == 1)neigh++;
 
-			if (board[i][j + 1] == 1)neigh++;
+				if (board[i + 1][j + 1] == 1)neigh++;
 
-			if (board[i + 1][j + 1] == 1)neigh++;
+				if (board[i - 1][j + 1] == 1)neigh++;
 
-			if (board[i - 1][j + 1] == 1)neigh++;
-
-			if (board[i + 1][j - 1] == 1)neigh++;
+				if (board[i + 1][j - 1] == 1)neigh++;
 
 
 
-			if (board[i][j] == 1) {
+				if (board[i][j] == 1) {
 
-				if (neigh < 2)board2[i][j] = 0;
+					if (neigh < 2)board2[i][j] = 0;
 
-				if (neigh >= 4)board2[i][j] = 0;
+					if (neigh >= 4)board2[i][j] = 0;
 
-			}
+				}
 
-			else if (board[i][j] == 0) {
+				else if (board[i][j] == 0) {
 
-				if (neigh == 3)board2[i][j] = 2;
+					if (neigh == 3)board2[i][j] = 2;
+
+				}
 
 			}
 
 		}
 
+		swap(board, board2);
+
+		resetBoard();
+		generationCount--;
 	}
-
-	swap(board, board2);
-
-	resetBoard();
-
 }
 
 
@@ -116,15 +117,23 @@ void randInput() {
 
 	srand((unsigned int)time(NULL));
 
-	for (int i = 0; i < Height; i++) {
+	for (int i = 0; i < maxHeight; i++) {
 
-		for (int j = 0; j < Width; j++) {
+		for (int j = 0; j < maxWidth; j++) {
 
-			board[i][j] = rand() % 10;
+			board[i][j] = rand() % 2;
 
 		}
 
 	}
+	//test
+	for (int i = 0; i<maxHeight; i++) {
+		for (int j = 0; j<maxWidth; j++) {
+			cout << board[i][j];
+		}
+	}
+	cout << endl;
+
 
 }//if randomize input if there is no board input set
 
@@ -132,7 +141,7 @@ void randInput() {
 
 
 
-void print(int board[][maxWidth]) {
+void print() {
 
 	cout << endl;
 
@@ -168,38 +177,40 @@ int main(int argc, char* argv[]) {
 
 	//cout<<argc<<endl;
 
+	char* arg1;
+	int arg2;
 	if (argc != 1 && argc != 2 && argc != 3) {
 		cout << "argc error. usage: ./life || ./life plus.txt ||./life plus.txt generationCount" << endl;
 	}
 	if (argc >= 2) {
-		char* arg1 = argv[1]; //txt
+		arg1 = argv[1]; //txt
 		cout << arg1 << endl;
 	}
 	if (argc >= 3) {
-		int arg2 = atoi(argv[2]); //generation count
+		arg2 = atoi(argv[2]); //generation count
 		cout << arg2 << endl;
 	}
 
 	//arg1 입력이 없다면 랜덤 인풋
 	if (argc == 1) {
 		randInput();
-		makeState();
+		makeState(1);
 		print();
 	}
 	else if (argc == 2) {
 		// 입력된 파일 읽어오기.
 		getInputTxt();
-		makeState();
+		makeState(1);
 		print();
 	}
 	else if (argc == 3) {
 		// 입력된 파일 읽어오고 해당 generationCount만큼 실행한후 txt파일로 dump(dump.txt)
 		getInputTxt();
-		makeState();
+		makeState(arg2);
 		dumpTxt();
 	}
 	//arg2 입력이 없다면 
-	
+
 
 }
 
