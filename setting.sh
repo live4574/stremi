@@ -8,8 +8,8 @@ echo g++ install...
 sudo apt install g++
 
 echo making file..
-sudo g++ -c life.cpp
+sudo g++ -c gameOfLife.cpp
 
-g++ -o life life.o
+g++ -o life gameOfLife.o
 
 echo done

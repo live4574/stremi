@@ -2,7 +2,9 @@
 #include<stdlib.h>
 #include<fstream>
 #include<string>
+#include<unistd.h>
 #define endl "\n"
+
 
 using namespace std;
 
@@ -118,8 +120,8 @@ void randInput() {
 
 	srand((unsigned int)time(NULL));
 
-	Height = rand() % 100 + 40;
-	Width = rand() % 100 + 80;
+	Height = rand() % 40 + 40;
+	Width = rand() % 40 + 80;
 
 	for (int i = 0; i < Height; i++) {
 
@@ -194,13 +196,13 @@ void getInputTxt(char* src) {
 			int posX, posY;
 			if (count % 2 == 1) {
 				for (int i = 0; i < in_line.size(); i++) {
-					if (in_line[i] != ' ')s1 += in_line[i];
+					if (in_line[i] != ' ')x += in_line[i];
 				}
 				posX = atoi(x.c_str());
 			}
 			if (count & 2 == 0) {
 				for (int i = 0; i < in_line.size(); i++) {
-					if (in_line[i] != ' ')s2 += in_line[i];
+					if (in_line[i] != ' ')y += in_line[i];
 				}
 				posY = atoi(y.c_str());
 			}
@@ -223,6 +225,11 @@ void dumpTxt() {
 		}out << endl;
 	}
 	out.close();
+}
+
+void clrscr() {
+	write(1, "\033[1;1H\033[2J", 10);
+
 }
 
 int main(int argc, char* argv[]) {
@@ -252,8 +259,12 @@ int main(int argc, char* argv[]) {
 	//arg1 입력이 없다면 랜덤 인풋
 	if (argc == 1) {
 		randInput();
-		makeState(1);
-		print();
+		while (1) {
+			clrscr();
+			makeState(1);
+			print();
+			//sleep(5000);
+		}
 	}
 	else if (argc == 2) {
 		// 입력된 파일 읽어오기.
