@@ -8,9 +8,9 @@ using namespace std;
 
 
 
-#define maxHeight 150
+#define maxHeight 500
 
-#define maxWidth 150
+#define maxWidth 500
 
 int board[maxHeight][maxWidth]; //maxwidth, height
 
@@ -36,7 +36,7 @@ void resetBoard() {
 
 
 
-void swap(int board[][maxWidth], int board2[][maxWidth]) {
+void swap() {
 
 	for (int i = 0; i < Height; i++) {
 
@@ -61,9 +61,9 @@ void makeState(int generationCount) {
 	while (generationCount) {
 		int neigh;
 
-		for (int i = 0; i < maxHeight; i++) {
+		for (int i = 0; i < Height; i++) {
 
-			for (int j = 0; j < maxWidth; j++) {
+			for (int j = 0; j < Width; j++) {
 
 				neigh = 0;
 
@@ -103,7 +103,7 @@ void makeState(int generationCount) {
 
 		}
 
-		swap(board, board2);
+		swap();
 
 		resetBoard();
 		generationCount--;
@@ -118,10 +118,12 @@ void randInput() {
 
 	srand((unsigned int)time(NULL));
 
+	Height = rand() % 100 + 40;
+	Width = rand() % 100 + 80;
 
-	for (int i = 0; i < maxHeight; i++) {
+	for (int i = 0; i < Height; i++) {
 
-		for (int j = 0; j < maxWidth; j++) {
+		for (int j = 0; j < Width; j++) {
 
 			board[i][j] = rand() % 2;
 
@@ -165,7 +167,7 @@ void print() {
 void getInputTxt(char* src) {
 	string in_line;
 	ifstream in(src);
-	int targetHeigth = 0;
+
 	int count = 0;
 	while (getline(in, in_line, ' ')) {
 
@@ -188,10 +190,21 @@ void getInputTxt(char* src) {
 			Width = atoi(s2.c_str());
 		}
 		else {
-			for (int j = 0; j < Width; j++) {
-				board[targetHeigth][j] = in_line[j];
+			string x, y;
+			int posX, posY;
+			if (count % 2 == 1) {
+				for (int i = 0; i < in_line.size(); i++) {
+					if (in_line[i] != ' ')s1 += in_line[i];
+				}
+				posX = atoi(x.c_str());
 			}
-			targetHeigth++;
+			if (count & 2 == 0) {
+				for (int i = 0; i < in_line.size(); i++) {
+					if (in_line[i] != ' ')s2 += in_line[i];
+				}
+				posY = atoi(y.c_str());
+			}
+			board[posX][posY] = 1;
 		}
 		count++;
 	}
